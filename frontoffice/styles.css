@@ -24,12 +24,6 @@ header a:hover {
   color: #f0c14b;
 }
 
-/* Banner Image */
-img {
-  display: block;
-  margin: 20px auto;
-}
-
 /* Section Styling */
 h1, h2 {
   color: #333;

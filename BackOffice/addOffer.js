@@ -89,3 +89,62 @@ function displaySuccess(inputId) {
         successMessage.remove(); 
     }
 }
+// partie3
+
+document.getElementById('title').addEventListener('keyup', function() {
+    const title = document.getElementById('title').value;
+    if (title.length < 3) {
+        displayError('title', 'The title must contain at least 3 characters.');
+    } else {
+        displayCorrect('title');
+    }
+});
+
+document.getElementById('destination').addEventListener('keyup', function() {
+    const destination = document.getElementById('destination').value;
+    const destinationPattern = /^[A-Za-z\s]{3,}$/;
+    if (!destinationPattern.test(destination)) {
+        displayError('destination', 'The destination must contain only letters and spaces, and be at least 3 characters long.');
+    } else {
+        displayCorrect('destination');
+    }
+});
+
+// fonctions pour faciliter
+function displayError(inputId, message) {
+    const inputField = document.getElementById(inputId);
+    inputField.style.borderColor = "red";
+    
+    let messageSpan = inputField.nextElementSibling;
+    if (!messageSpan || messageSpan.className !== "error") {
+        messageSpan = document.createElement("span");
+        messageSpan.className = "error";
+        inputField.after(messageSpan);
+    }
+    messageSpan.textContent = message;
+    messageSpan.style.color = "red";
+}
+
+function displaySuccess(inputId) {
+    const inputField = document.getElementById(inputId);
+    inputField.style.borderColor = "green";
+    
+    let successMessage = inputField.nextElementSibling;
+    if (successMessage && successMessage.className === "error") {
+        successMessage.remove();
+    }
+}
+
+function displayCorrect(inputId) {
+    const inputField = document.getElementById(inputId);
+    inputField.style.borderColor = "green";
+    
+    let correctMessage = inputField.nextElementSibling;
+    if (!correctMessage || correctMessage.className !== "correct") {
+        correctMessage = document.createElement("span");
+        correctMessage.className = "correct";
+        inputField.after(correctMessage);
+    }
+    correctMessage.textContent = "Correct";
+    correctMessage.style.color = "green";
+}
